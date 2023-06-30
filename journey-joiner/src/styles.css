@@ -1,0 +1,91 @@
+ * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+.site-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* header, main content, footer */
+    min-height: 100vh;
+  }
+  
+
+
+/* ---------------------------Header--------------------------- */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    width: 100%;
+    padding: 2%;
+    background: #341294;
+    font-size: 1.1rem;
+
+}
+  
+.header a {
+    text-decoration: none; /* Optional: remove underline from links */
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.site-logo:hover {
+    transform: scale(1.1);
+}
+
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    border: 3px solid white;  /* Adds a 3px wide white border */
+    border-radius: 25px;      /* Makes the border rounded */
+    padding: 5px 20px;             /* Adds some padding inside the border */
+    text-decoration: none; 
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #341294;
+    background-color: white; /* Changes the background color on hover */
+    transform: scale(1.2);
+}
+
+/* ---------------------Main-------------------------------- */
+
+
+
+.main-background {
+    background: url('../src/assets/night-background.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 700px;
+    width: 100%;
+}
+
+
+/* -----------------------------Footer---------------------------- */
+
+.footer {
+    height: 70px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
