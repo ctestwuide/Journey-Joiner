@@ -11,10 +11,10 @@ export default function Header() {
                 <span> Journey Joiner </span>
             </Link>
             <nav className="nav-links">
-                <NavLink className="nav-link" to="host">
+                <NavLink className="nav-link" to="/login">
                     Log in
                 </NavLink>
-                <NavLink className="nav-link" to="about">
+                <NavLink className="nav-link" to="/signup">
                     Sign up
                 </NavLink>
             </nav>

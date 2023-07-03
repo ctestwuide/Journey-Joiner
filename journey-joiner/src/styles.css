@@ -178,3 +178,57 @@
     text-align: center;
     font-weight: 700;
 }
+
+
+/* -------------------------Signup Page--------------------------- */
+
+.signup-container {
+    position: relative;
+    top: 20px;
+    width: 35%;
+    height: 500px;
+    border-radius: 25px;
+    border: 8px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+}
+
+.signup-container input {
+    display: block;
+    width: 300px; /* Make the inputs take up the full width of the container */
+    padding: 5px; /* Add some padding inside the inputs */
+    border-radius: 5px; /* Round the corners of the inputs */
+    border: 2px solid #FFF;
+    background-color: #341294; /* Change the background color of the inputs */
+    color: white; /* Change the color of the input text */
+    margin-bottom: 15px; /* Add some space between each input */
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-container button {
+    display: block;
+    width: 40%; /* make the button take the full width of the form */
+    height: 35px; /* you can adjust this to your preference */
+    background-color: #341294; /* this is the background color */
+    color: #FFF; /* this is the text color */
+    border-radius: 5px; /* this rounds the button's corners */
+    border: 2px solid #FFF;
+    margin-top: 10px; /* adds a space at the top of the button */
+    cursor: pointer; /* changes the mouse cursor when it hovers over the button */
+    font-size: 1rem; /* this changes the font size of the button's text */
+    font-weight: bold; /* makes the font weight bold */
+    transition: background-color 0.3s ease; /* makes a smooth transition when the background color changes */
+}
+
+.signup-container button:hover {
+    background-color: #5012d4; /* changes the background color when the mouse hovers over the button */
+}

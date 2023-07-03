@@ -9,10 +9,10 @@ export default function Home() {
                 <div className="home-box">
                     <h2>Find your next travel buddy is only a few clicks away</h2>
                     <img src={logo} alt="Journey Joiner Logo" width="120px" />
-                    <NavLink to="">
+                    <NavLink to="/login">
                             Log in
                     </NavLink>
-                    <NavLink to="">
+                    <NavLink to="/signup">
                             Sign up
                     </NavLink>
                 </div>
