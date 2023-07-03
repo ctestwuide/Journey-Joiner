@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
-// import logo from '../assets/logo.png'
+import logo from '../assets/logo.png'
 
 export default function Login() {
     const [user, setUser] = useState({
@@ -23,9 +23,9 @@ export default function Login() {
 
     return (
         <main className="main-background">
-            <div className="signup-container">
+            <div className="login-container">
                 <h2>Log In</h2>
-                {/* <img src={logo} alt="Journey Joiner Logo" /> */}
+                <img src={logo} alt="Journey Joiner Logo" width="100px" />
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <input
                         type="email"

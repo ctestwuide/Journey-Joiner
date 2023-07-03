@@ -180,7 +180,7 @@
 }
 
 
-/* -------------------------Signup Page--------------------------- */
+/* -------------------------Signup/Login Page--------------------------- */
 
 .signup-container {
     position: relative;
@@ -197,7 +197,22 @@
     align-items: center; /* centers items horizontally in the container */
 }
 
-.signup-container input {
+.login-container {
+    position: relative;
+    top: 20px;
+    width: 35%;
+    height: 400px;
+    border-radius: 25px;
+    border: 8px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+}
+
+.signup-container input, .login-container input {
     display: block;
     width: 300px; /* Make the inputs take up the full width of the container */
     padding: 5px; /* Add some padding inside the inputs */
@@ -214,7 +229,7 @@
     align-items: center;
 }
 
-.signup-container button {
+.signup-container button, .login-container button {
     display: block;
     width: 40%; /* make the button take the full width of the form */
     height: 35px; /* you can adjust this to your preference */
@@ -229,6 +244,6 @@
     transition: background-color 0.3s ease; /* makes a smooth transition when the background color changes */
 }
 
-.signup-container button:hover {
+.signup-container button:hover, .login-container button:hover {
     background-color: #5012d4; /* changes the background color when the mouse hovers over the button */
 }
