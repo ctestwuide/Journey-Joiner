@@ -9,6 +9,7 @@ import Layout from "../src/components/Layout"
 import Home from "../src/pages/Home"
 import Signup from "../src/pages/Signup"
 import Login from "../src/pages/Login"
+import Travel from "../src/pages/Travel"
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element={<Home />} />
     <Route path="signup" element={<Signup />} />
     <Route path="login" element={<Login />} />
+    <Route path="travel" element={<Travel />} />
   </Route>
 ))
 
