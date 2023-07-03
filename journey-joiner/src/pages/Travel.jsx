@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png'
+import Dashboard from '../components/Dashboard'
 
 export default function Travel() {
     const [travelData, setTravelData] = useState({
@@ -34,32 +35,44 @@ export default function Travel() {
 
     return (
         <main className="main-background">
-            <div className="travel-container">
-                <h2>Travel</h2>
-                <img src={logo} alt="Journey Joiner Logo" width="70px"/>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="location"
-                        value={travelData.location}
-                        onChange={handleChange}
-                        placeholder="City / Location"
-                        required
-                    />
-                    <input
-                        type="number"
-                        name="days"
-                        value={travelData.days}
-                        onChange={handleChange}
-                        placeholder="Days"
-                        required
-                    />
-                    <button type="submit">Generate Travel Ideas</button>
-                </form>
-                <div className="api-response">
-                    {apiResponse}
-                </div>
+          <Dashboard />
+          <div className="travel-container">
+            <div className="travel-container-title">
+              <img src={logo} alt="Journey Joiner Logo" width="70px" />
+              <h2>Travel</h2>
             </div>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  name="location"
+                  value={travelData.location}
+                  onChange={handleChange}
+                  placeholder="City / Location"
+                  required
+                />
+                <input
+                  type="number"
+                  name="days"
+                  value={travelData.days}
+                  onChange={handleChange}
+                  placeholder="Days"
+                  required
+                />
+              </div>
+              <button type="submit">Generate Travel Ideas</button>
+            </form>
+            <div className="api-response">
+                <textarea
+                value={apiResponse}
+                readOnly
+                rows={10}
+                cols={50}
+                placeholder="API Response"
+                />
+            </div>
+          </div>
         </main>
-    );
+      );
+      
 }
