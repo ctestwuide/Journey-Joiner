@@ -77,6 +77,9 @@
     background-size: cover;
     height: 700px;
     width: 100%;
+    display: flex;
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
 }
 
 
@@ -88,4 +91,90 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+
+
+/* -----------------------------Homepage--------------------------- */
+.home-box {
+    position: relative;
+    top: 20px;
+    width: 40%;
+    height: 500px;
+    border-radius: 25px;
+    border: 8px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+
+}
+
+
+.home-box > h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.home-box > img {
+    margin-bottom: 5%;
+}
+
+.home-box > a {
+    border: 3px solid white;  /* Adds a 3px wide white border */
+    border-radius: 10px;      /* Makes the border rounded */
+    padding: 5px 20px;             /* Adds some padding inside the border */
+    text-decoration: none; 
+    font-weight: bold;
+    margin: 10px;
+    width: 80%;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+
+.home-box > a:hover {
+    color: #341294;
+    background-color: white; /* Changes the background color on hover */
+    transform: scale(1.1);
+}
+
+.black-area {
+    background: black;
+    height: 400px;
+    display: flex;
+    justify-content: center; /* Center items horizontally, if needed */
+    align-items: center; /* Center items vertically, if needed */
+    color: white; /* Set the color of text inside the div */
+}
+
+.how-it-works {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 3px solid #FFF;
+    background: rgba(217, 217, 217, 0.00);
+    width: 40%;
+    height: 300px;
+    padding: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.how-it-works-line {
+    height: 5px;
+    width: 75%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.how-it-works-steps > p {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
 }

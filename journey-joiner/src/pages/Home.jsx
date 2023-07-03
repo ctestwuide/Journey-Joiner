@@ -1,12 +1,35 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import logo from "../assets/logo.png"
 
 export default function Home() {
     return (
-        <div className="home-container">
-            <h1>You got the travel plans, we got the travel vans.</h1>
-            <p>Add adventure to your life by joining the #vanlife movement. Rent the perfect van to make your perfect road trip.</p>
-            <Link to="vans">Find your van</Link>
-        </div>
+        <>
+            <main className="main-background">
+                <div className="home-box">
+                    <h2>Find your next travel buddy is only a few clicks away</h2>
+                    <img src={logo} alt="Journey Joiner Logo" width="120px" />
+                    <NavLink to="">
+                            Log in
+                    </NavLink>
+                    <NavLink to="">
+                            Sign up
+                    </NavLink>
+                </div>
+            </main>
+            <section className="black-area">
+                <div className="how-it-works">
+                    <h2>How it works</h2>
+                    <div className="how-it-works-line"></div>
+                    <div className="how-it-works-steps">
+                        <p>1. Create an account</p>
+                        <p>2. Enter your availability, budget, and travel preferences</p>
+                        <p>3. Match with other aspiring travelers</p>
+                        <p>4. Take the trip of a lifetime with a custom made itinerary</p>
+                    </div>
+
+                </div>
+            </section>
+        </>
     )
-};
+}
