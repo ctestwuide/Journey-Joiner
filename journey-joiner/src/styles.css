@@ -344,6 +344,12 @@
     width: 100%;
     height: 100%;
   }
+
+  .travel-container .api-response textarea {
+    margin: 0; /* Remove the default margin */
+    box-sizing: border-box; /* Include padding and border in width/height calculation */
+  }
+  
   
   .travel-container textarea {
     width: 100%;
@@ -515,27 +521,76 @@
   }
 
 
-  /* -----------------------Travel Card Component---------------------- */
+  /* -----------------------Discover---------------------- */
   
   .discover-container {
     position: relative;
-    /* top: 20px; */
-    width: 65%;
-    height: 500px;
+    width: 55%;
+    height: 510px;
     border-radius: 25px;
-    border: 8px solid #FFF;
+    border: 8px solid #fff;
     background: rgba(52, 18, 148, 0.69);
-    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column; /* stacks the items vertically */
     justify-content: center; /* centers items vertically in the container */
     align-items: center; /* centers items horizontally in the container */
-}
+  }
+  
+  .discover-container-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+  
+  .discover-container-title img {
+    margin-right: 10px;
+  }
+  
+  .discover-match-pass {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .discover-match-pass button {
+    width: 120px;
+    height: 40px;
+    background-color: #341294;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  .discover-match-pass button.pass-button:hover {
+    background-color: lightcoral;
+  }
+  
+  .discover-match-pass button.match-button:hover {
+    background-color: lightgreen;
+  }
+  
+  .discover-match-pass button:active {
+    transform: scale(1.1);
+  }
+  
+  
+
+
+
+  /* ----------------------Travel Card Component------------------- */
 
   .travel-card-container {
     position: relative;
-    width: 80%;
-    height: 355px;
+    width: 600px;
+    height: 350px;
     border-radius: 25px;
     border: 6px solid #FFF;
     background: rgba(52, 18, 148, 0.69);

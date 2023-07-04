@@ -62,7 +62,7 @@ export default function Travel() {
               </div>
               <button type="submit">Generate Travel Ideas</button>
             </form>
-            <div className="api-response">
+            <div className="api-response" id="api-response">
                 <textarea
                 value={apiResponse}
                 readOnly
