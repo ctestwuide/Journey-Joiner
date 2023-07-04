@@ -581,9 +581,6 @@
     transform: scale(1.1);
   }
   
-  
-
-
 
   /* ----------------------Travel Card Component------------------- */
 
@@ -656,3 +653,120 @@
     margin-right: 20px;
   }
 
+  /* -----------------------Travel Card Small------------------- */
+
+  .travel-card-small-container {
+    position: relative;
+    width: 350px;
+    height: 200px;
+    border-radius: 25px;
+    border: 3px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 7px 7px 2px 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+  }
+  
+  .travel-card-small-left {
+    flex: 1;
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .travel-card-small-right {
+    flex: 2;
+    flex-basis: 67%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
+  .travel-card-small-profile-picture img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 10px;
+  }
+
+  .travel-card-small-data-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #travel-card-small-name {
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    font-weight: 900;
+  }
+
+  #travel-card-small-budget {
+    font-size: .75rem;
+  }
+
+  .travel-card-small-bio {
+    width: 100%;
+    height: 85%;
+    border-radius: 15px;
+    border: 2px solid #FFF;
+    padding: 6px;
+  }
+
+  .travel-card-small-interests img {
+    margin-top: 7px;
+    margin-right: 15px;
+  }
+
+
+  /* -----------------------Matches--------------------- */
+
+  .matches-messages-container {
+    display: flex;
+    gap: 100px;
+  }
+
+  .matches-container {
+    position: relative;
+    width: 250px;
+    height: 510px;
+    border-radius: 25px;
+    border: 5px solid #fff;
+    background: rgba(52, 18, 148, 0.69);
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+  }
+
+
+  .messages-container {
+    position: relative;
+    width: 385px;
+    height: 510px;
+    border-radius: 25px;
+    border: 5px solid #fff;
+    background: rgba(52, 18, 148, 0.69);
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+  }
+  
+  .matches-container-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+  
+  .matches-container-title img {
+    margin-right: 10px;
+  }
