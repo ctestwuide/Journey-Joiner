@@ -128,40 +128,40 @@ export default function Profile() {
         </div>
     </div> 
 
-
-
     </main>
+
     <section className="black-area">
 
-        <div className="profile-section">
+        <div className="profile-credentials">
             <div className="email-password-section">
-            <div>
-                <label>Email:</label>
-                <input
-                type="email"
-                name="email"
-                value={profileData.email}
-                onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
-                placeholder="Email"
-                />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input
-                type="password"
-                name="password"
-                value={profileData.password}
-                onChange={(e) => setProfileData({ ...profileData, password: e.target.value })}
-                placeholder="Password"
-                />
-            </div>
-            </div>
-        </div>
+                <div>
 
-        <div className="profile-section">
-            <button type="submit" onClick={handleSubmit}>
-            Update My Travel Card
-            </button>
+                    <input
+                    type="email"
+                    name="email"
+                    value={profileData.email}
+                    onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                    placeholder="Email"
+                    />
+                </div>
+                <div>
+
+                    <input
+                    type="password"
+                    name="password"
+                    value={profileData.password}
+                    onChange={(e) => setProfileData({ ...profileData, password: e.target.value })}
+                    placeholder="Password"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" onClick={handleSubmit}>
+                Update My Travel Card
+                </button>
+            </div>
+
         </div>
 
     </section>
