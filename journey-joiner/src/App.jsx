@@ -11,6 +11,8 @@ import Signup from "../src/pages/Signup"
 import Login from "../src/pages/Login"
 import Travel from "../src/pages/Travel"
 import Profile from "../src/pages/Profile"
+import Discover from "../src/pages/Discover"
+
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -20,6 +22,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="login" element={<Login />} />
     <Route path="travel" element={<Travel />} />
     <Route path="profile" element={<Profile />} />
+    <Route path="discover" element={<Discover />} />
   </Route>
 ))
 

@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <section className="dash-container">
 
-            <NavLink className="nav-link" to="/">
+            <NavLink className="nav-link" to="/discover">
                 Discover
             </NavLink>
 
