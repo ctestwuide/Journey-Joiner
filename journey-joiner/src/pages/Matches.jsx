@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Dashboard from '../components/Dashboard';
 import TravelCardSmall from '../components/TravelCardSmall';
+import TravelCardMini from '../components/TravelCardMini';
 import defaultProfileImage from '../assets/blank-profile.png';
 import logo from '../assets/logo.png';
 
@@ -27,6 +28,13 @@ export default function Matches() {
             <div className="matches-container-title">
             <img src={logo} alt="Journey Joiner Logo" width="40px" />
             <h2>Matches</h2>
+            </div>
+
+            <div className="matches-container-profiles">
+                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
+                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
+                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
+                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
             </div>
 
         </section>

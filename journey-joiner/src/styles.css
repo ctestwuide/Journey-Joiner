@@ -657,12 +657,12 @@
 
   .travel-card-small-container {
     position: relative;
-    width: 350px;
+    width: 375px;
     height: 175px;
     border-radius: 25px;
     border: 3px solid #FFF;
     background: rgba(52, 18, 148, 0.69);
-    padding: 5px 5px 2px 5px;
+    padding: 10px 10px 4px 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -719,28 +719,55 @@
   }
 
   .travel-card-small-interests img {
-    margin-top: 2px;
+    margin-top: 4px;
     margin-right: 15px;
   }
 
+
+  /* ------------------Travel Card Mini---------------- */
+  
+  .travel-card-mini-container {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 8px;
+    border: 2px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 5px 5px 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .travel-card-mini-profile-picture img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
 
   /* -----------------------Matches--------------------- */
 
   .matches-messages-container {
     display: flex;
-    gap: 100px;
+    margin-top: 30px;
+    gap: 25px;
   }
 
   .matches-container {
+    flex: 1;
+    flex-basis: 25%;
     position: relative;
     width: 250px;
-    height: 500px;
+    height: 550px;
     border-radius: 25px;
     border: 5px solid #fff;
     background: rgba(52, 18, 148, 0.69);
     display: flex;
     flex-direction: column; /* stacks the items vertically */
-    justify-content: center; /* centers items vertically in the container */
+    justify-content: flex-start; /* centers items vertically in the container */
     align-items: center; /* centers items horizontally in the container */
   }
   
@@ -756,7 +783,10 @@
     margin-right: 10px;
   }
 
+
   .messages-container {
+    flex: 2;
+    flex-basis: 80%;
     position: relative;
     width: 385px;
     height: 510px;
