@@ -5,19 +5,24 @@ import defaultProfileImage from '../assets/blank-profile.png';
 
 export default function Discover() {
   const profileData = {
-    profilePicture: '/path/to/profile-picture.jpg',
+    profilePicture: defaultProfileImage,
     firstName: 'John',
     lastName: 'Doe',
     age: 30,
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     budget: '$300',
-    interests: ['beach bum', 'foodie'],
+    interests: ['beach bum', 'foodie', 'adventurer', 'museum magnet'],
   };
 
   return (
     <main className="main-background">
       <Dashboard />
-      <TravelCard profileData={profileData} />
+      <section className="discover-container">
+         
+        <TravelCard profileData={profileData} />
+      </section>
     </main>
   );
 }
