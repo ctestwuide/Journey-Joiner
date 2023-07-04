@@ -18,7 +18,7 @@ export default function Header() {
                 Travel Ideas
             </NavLink>
 
-            <NavLink className="nav-link" to="/">
+            <NavLink className="nav-link" to="/profile">
                 My Profile
             </NavLink>
 
