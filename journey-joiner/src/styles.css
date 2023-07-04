@@ -513,6 +513,91 @@
   button[type="submit"]:hover {
     background-color: #5012d4;
   }
-  
 
+
+  /* -----------------------Travel Card Component---------------------- */
+  
+  .discover-container {
+    position: relative;
+    /* top: 20px; */
+    width: 65%;
+    height: 500px;
+    border-radius: 25px;
+    border: 8px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* stacks the items vertically */
+    justify-content: center; /* centers items vertically in the container */
+    align-items: center; /* centers items horizontally in the container */
+}
+
+  .travel-card-container {
+    position: relative;
+    width: 80%;
+    height: 355px;
+    border-radius: 25px;
+    border: 6px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .travel-card-left {
+    flex: 1;
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .travel-card-right {
+    flex: 2;
+    flex-basis: 67%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  
+  
+  .travel-card-profile-picture img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 10px;
+  }
+
+  .travel-card-data-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #travel-card-name {
+    margin-bottom: 10px;
+    font-size: 2.25rem;
+    font-weight: 900;
+  }
+
+  #travel-card-budget {
+    font-size: 1rem;
+  }
+
+  .travel-card-bio {
+    width: 100%;
+    height: 78%;
+    border-radius: 25px;
+    border: 4px solid #FFF;
+    padding: 10px;
+  }
+
+  .travel-card-interests img {
+    margin-top: 12px;
+    margin-right: 20px;
+  }
 
