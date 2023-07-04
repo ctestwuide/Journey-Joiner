@@ -351,8 +351,142 @@
   }
   
   
+/* -------------------------Profile---------------------- */
 
+.profile-container {
+    position: relative;
+    top: 20px;
+    width: 70%;
+    height: 500px;
+    border-radius: 25px;
+    border: 8px solid #FFF;
+    background: rgba(52, 18, 148, 0.69);
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-section-left {
+    flex: 1;
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-
+  .profile-section-right {
+    flex: 2;
+    flex-basis: 67%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-picture img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  
+  .profile-picture input {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+  
+  .profile-data-left input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+    background-color: #341294;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+    background-color: #341294;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+    background-color: #341294;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .interests-buttons button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+    background-color: #341294;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .interests-buttons button.selected {
+    background-color: #5012d4;
+  }
+  
+  .email-password-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .email-password-section div {
+    margin-bottom: 10px;
+  }
+  
+  .email-password-section input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #FFF;
+    background-color: #341294;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #341294;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #5012d4;
+  }
+  
 
 
