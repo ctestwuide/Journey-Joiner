@@ -12,6 +12,7 @@ import Login from "../src/pages/Login"
 import Travel from "../src/pages/Travel"
 import Profile from "../src/pages/Profile"
 import Discover from "../src/pages/Discover"
+import Matches from "../src/pages/Matches"
 
 
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="travel" element={<Travel />} />
     <Route path="profile" element={<Profile />} />
     <Route path="discover" element={<Discover />} />
+    <Route path="matches" element={<Matches />} />
   </Route>
 ))
 
