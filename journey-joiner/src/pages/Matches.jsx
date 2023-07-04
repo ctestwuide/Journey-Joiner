@@ -25,7 +25,7 @@ export default function Matches() {
         <section className="matches-container">
 
             <div className="matches-container-title">
-            <img src={logo} alt="Journey Joiner Logo" width="70px" />
+            <img src={logo} alt="Journey Joiner Logo" width="40px" />
             <h2>Matches</h2>
             </div>
 
@@ -34,7 +34,7 @@ export default function Matches() {
         <section className="messages-container">
 
             <div className="matches-container-title">
-            <img src={logo} alt="Journey Joiner Logo" width="70px" />
+            <img src={logo} alt="Journey Joiner Logo" width="40px" />
             <h2>Messages</h2>
             </div>
             
