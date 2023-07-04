@@ -254,20 +254,27 @@
     align-items: center;
 }
 
-.signup-container button, .login-container button, .travel-container button {
-    display: block;
-    width: 40%; /* make the button take the full width of the form */
-    height: 35px; /* you can adjust this to your preference */
-    background-color: #341294; /* this is the background color */
-    color: #FFF; /* this is the text color */
-    border-radius: 5px; /* this rounds the button's corners */
-    border: 2px solid #FFF;
-    margin-top: 10px; /* adds a space at the top of the button */
-    cursor: pointer; /* changes the mouse cursor when it hovers over the button */
-    font-size: 1rem; /* this changes the font size of the button's text */
-    font-weight: bold; /* makes the font weight bold */
-    transition: background-color 0.3s ease; /* makes a smooth transition when the background color changes */
+
+
+.signup-container button,
+.login-container button,
+.travel-container button {
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+  width: 40%;
+  height: 35px;
+  background-color: #341294;
+  color: #fff;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
+
 
 .signup-container button:hover, .login-container button:hover, .travel-container button:hover {
     background-color: #5012d4; /* changes the background color when the mouse hovers over the button */
@@ -473,7 +480,6 @@
   .profile-credentials {
     width: 20%;
   }
-
 
   .email-password-section {
     display: flex;
