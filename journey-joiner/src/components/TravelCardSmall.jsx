@@ -37,7 +37,7 @@ export default function TravelCardSmall({ profileData }) {
         </div>
         <div className="travel-card-small-right">
           <div className="travel-card-small-bio">
-            <p>Bio: {profileData.bio}</p>
+            <p>{profileData.bio}</p>
           </div>
           <div className="travel-card-small-interests">
             {renderInterestImages()}

@@ -4,6 +4,7 @@ import TravelCardSmall from '../components/TravelCardSmall';
 import TravelCardMini from '../components/TravelCardMini';
 import defaultProfileImage from '../assets/blank-profile.png';
 import logo from '../assets/logo.png';
+import DirectMessaging from '../components/DirectMessaging';
 
 export default function Matches() {
   const profiles = [
@@ -102,7 +103,9 @@ export default function Matches() {
             <h2>Messages</h2>
           </div>
           {selectedProfile && <TravelCardSmall profileData={selectedProfile} />}
-          <div className="direct-messaging">{/* Direct messaging component */}</div>
+          <div className="direct-messaging-area">
+            <DirectMessaging />
+          </div>
         </section>
       </div>
     </main>
