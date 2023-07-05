@@ -785,7 +785,25 @@
 
   .matches-container-profiles {
     overflow-y: auto;
-    max-height: 490px;
+    max-height: 485px;
+    padding-right: 5px;
+  }
+
+  .matches-container-profiles::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .matches-container-profiles::-webkit-scrollbar-track {
+    background: #67409a00;
+  }
+  
+  .matches-container-profiles::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+  }
+  
+  .matches-container-profiles::-webkit-scrollbar-thumb:hover {
+    background: rgb(90, 116, 241);
   }
 
 
