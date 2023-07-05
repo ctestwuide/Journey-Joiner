@@ -7,6 +7,7 @@ import logo from '../assets/logo.png';
 
 export default function Matches() {
   const profileData = {
+    id: "1",
     profilePicture: defaultProfileImage,
     firstName: 'John',
     lastName: 'Doe',
@@ -18,42 +19,77 @@ export default function Matches() {
     interests: ['beach bum', 'foodie', 'adventurer', 'museum magnet'],
   };
 
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
+  const handleProfileClick = (profile) => {
+    console.log('Clicked profile:', profile);
+    setSelectedProfile({ ...profile });
+  };
+  
+  
+
   return (
     <main className="main-background">
       <Dashboard />
       <div className="matches-messages-container">
-
         <section className="matches-container">
-
             <div className="matches-container-title">
-            <img src={logo} alt="Journey Joiner Logo" width="40px" />
-            <h2>Matches</h2>
+                <img src={logo} alt="Journey Joiner Logo" width="40px" />
+                <h2>Matches</h2>
             </div>
 
             <div className="matches-container-profiles">
-                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
-                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
-                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
-                <TravelCardMini profileData={profileData} className="matches-container-profile"/>
-            </div>
+                <TravelCardMini
+                    key="1"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
+                <TravelCardMini
+                    key="2"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
+                                <TravelCardMini
+                    key="3"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
+                                <TravelCardMini
+                    key="4"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
+                                <TravelCardMini
+                    key="5"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
+                                <TravelCardMini
+                    key="6"
+                    profileData={profileData}
+                    className="matches-container-profile"
+                    onClick={() => handleProfileClick(profileData)}
+                />
 
+          </div>
         </section>
 
         <section className="messages-container">
-
-            <div className="matches-container-title">
+          <div className="matches-container-title">
             <img src={logo} alt="Journey Joiner Logo" width="40px" />
             <h2>Messages</h2>
-            </div>
-            
-            <TravelCardSmall profileData={profileData} />
-            <div className="direct-messaging">
-            {/* Direct messaging component */}
-            </div>
-
+          </div>
+          {selectedProfile && (
+            <TravelCardSmall profileData={selectedProfile} />
+          )}
+          <div className="direct-messaging">{/* Direct messaging component */}</div>
         </section>
-
-        </div>
+      </div>
     </main>
   );
 }

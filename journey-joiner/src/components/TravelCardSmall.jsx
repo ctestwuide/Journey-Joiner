@@ -27,7 +27,7 @@ export default function TravelCardSmall({ profileData }) {
 
 
   return (
-    <div className="travel-card-small-container">
+    <div className="travel-card-small-container" key={profileData.id}>
       <div className="travel-card-small-left">
         <div className="travel-card-small-profile-picture">
           <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />

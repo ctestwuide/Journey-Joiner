@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 
 export default function Discover() {
   const profileData = {
+    id: 1,
     profilePicture: defaultProfileImage,
     firstName: 'John',
     lastName: 'Doe',
