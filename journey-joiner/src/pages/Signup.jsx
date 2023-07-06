@@ -8,7 +8,7 @@ export default function Signup() {
         lastName: '',
         email: '',
         password: '',
-        birthdate: '',
+        age: '',
     });
 
     const handleChange = (e) => {
@@ -47,10 +47,11 @@ export default function Signup() {
                         required
                     />
                     <input
-                        type="date"
-                        name="birthdate"
-                        value={user.birthdate}
+                        type="text"
+                        name="age"
+                        value={user.age}
                         onChange={handleChange}
+                        placeholder="Age"
                         required
                     />
                     <input
