@@ -46,3 +46,14 @@ def getUser(request, userEmail):
     users = User.objects.get(email=userEmail)
     serializer = UserSerializer(users, many=False)
     return Response(serializer.data)
+
+@api_view(['PUT'])
+def updateUser(request, userEmail):
+    data = request.data
+    user = User.objects.get(email=userEmail)
+    serializer = UserSerializer(instance=user, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
