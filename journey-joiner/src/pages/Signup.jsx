@@ -20,9 +20,22 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you would usually send the user data to the backend
-        console.log(user);
-    };
+        fetch('/api/signup/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);  // Handle the response from the backend
+          })
+          .catch(error => {
+            console.error(error);  // Handle any error that occurred during the request
+          });
+      };
+      
 
     return (
         <main className="main-background">

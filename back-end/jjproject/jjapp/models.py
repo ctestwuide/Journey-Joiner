@@ -6,6 +6,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     age = models.IntegerField()
+    email = models.EmailField()  # Add this line for the email field
     profile_picture = models.ImageField(upload_to='profile_pictures/')
     bio = models.TextField()
     budget = models.CharField(max_length=50)
