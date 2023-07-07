@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import logo from '../assets/logo.png'
 
-export default function Signup() {
+export default function Signup({ history }) {
+
+
     const [user, setUser] = useState({
         first_name: '',
         last_name: '',
@@ -20,7 +22,7 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/api/signup/', {
+        fetch('http://127.0.0.1:8000/api/signup/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -30,6 +32,7 @@ export default function Signup() {
             .then(response => response.json())
             .then(data => {
               console.log(data);  // Handle the response from the backend
+              history.push('/profile')
             })
             .catch(error => {
               console.error(error);  // Handle any error that occurred during the request
@@ -37,11 +40,7 @@ export default function Signup() {
           
       };
 
-    // async function getUser(userEmail) {
-    //     const response = await fetch(`http:://127.0.0.1:8000/api/getuser/${userEmail}`)
-    //     const data = await response.json()
-    //     return data
-    // }
+
       
 
     return (
@@ -96,5 +95,16 @@ export default function Signup() {
                 <p>Already have an account? <NavLink to="/login">Log in</NavLink></p>
             </div>
         </main>
-    );
+    );    // async function getUser(userEmail) {
+    //     const response = await fetch(`http:://127.0.0.1:8000/api/getuser/${userEmail}`)
+    //     const data = await response.json()
+    //     return data
+    // }
 }
+
+
+    // async function getUser(userEmail) {
+    //     const response = await fetch(`http:://127.0.0.1:8000/api/getuser/${userEmail}`)
+    //     const data = await response.json()
+    //     return data
+    // }
