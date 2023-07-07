@@ -12,29 +12,6 @@ def test(request):
     return Response('test worked')
 
 
-@api_view(['POST'])
-def signup(request):
-
-    # Extract the user data from the request
-    first_name = request.POST.get('first_name')
-    last_name = request.POST.get('last_name')
-    age = request.POST.get('age')
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-
-    # Save the user to the database using your custom user model
-    User.objects.create(
-        first_name=first_name,
-        last_name=last_name,
-        age=age,
-        email=email,
-        password=password,
-    )
-
-    # Return a success response
-    return Response('It worked', safe=False)
-
-
 @api_view(['GET'])
 def getUsers(request):
     users = User.objects.all()
@@ -47,6 +24,22 @@ def getUser(request, userEmail):
     serializer = UserSerializer(users, many=False)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def signup(request):
+    data = request.data
+    user = User.objects.create(
+        first_name = data['first_name'],
+        last_name = data['last_name'],
+        age = data['age'],
+        email = data['email'],
+        password = data['password'],
+        )
+
+    serializer = UserSerializer(user, many=False)
+
+    return Response(serializer.data)
+
+
 @api_view(['PUT'])
 def updateUser(request, userEmail):
     data = request.data
@@ -57,3 +50,5 @@ def updateUser(request, userEmail):
         serializer.save()
 
     return Response(serializer.data)
+
+

@@ -4,7 +4,7 @@ import logo from '../assets/logo.png'
 
 export default function Signup() {
     const [user, setUser] = useState({
-        first_name: 'Chase',
+        first_name: '',
         last_name: '',
         email: '',
         password: '',
