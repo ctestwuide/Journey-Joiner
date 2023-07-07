@@ -4,8 +4,8 @@ import logo from '../assets/logo.png'
 
 export default function Signup() {
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
+        first_name: 'Chase',
+        last_name: '',
         email: '',
         password: '',
         age: '',
@@ -20,20 +20,21 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/api/signup/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(user),
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);  // Handle the response from the backend
+        fetch('http://localhost:8000/signup/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
           })
-          .catch(error => {
-            console.error(error);  // Handle any error that occurred during the request
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);  // Handle the response from the backend
+            })
+            .catch(error => {
+              console.error(error);  // Handle any error that occurred during the request
           });
+          
       };
       
 
@@ -45,16 +46,16 @@ export default function Signup() {
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <input
                         type="text"
-                        name="firstName"
-                        value={user.firstName}
+                        name="first_name"
+                        value={user.first_name}
                         onChange={handleChange}
                         placeholder="First name"
                         required
                     />
                     <input
                         type="text"
-                        name="lastName"
-                        value={user.lastName}
+                        name="last_name"
+                        value={user.last_name}
                         onChange={handleChange}
                         placeholder="Last name"
                         required

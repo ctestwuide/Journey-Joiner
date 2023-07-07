@@ -6,14 +6,16 @@ class User(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     age = models.IntegerField()
-    email = models.EmailField()  # Add this line for the email field
-    profile_picture = models.ImageField(upload_to='profile_pictures/')
-    bio = models.TextField()
-    budget = models.CharField(max_length=50)
-    interests = models.ManyToManyField('Interest')
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True)
+    bio = models.TextField(blank=True)
+    budget = models.CharField(max_length=50, blank=True)
+    interests = models.ManyToManyField('Interest', blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    
 
 # Model to represent user interests
 class Interest(models.Model):

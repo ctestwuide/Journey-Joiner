@@ -1,15 +1,18 @@
 from django.shortcuts import render
-from .models import User  
+from .models import User
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+
+
 @csrf_exempt
 def signup(request):
+
     if request.method == 'POST':
         # Extract the user data from the request
-        first_name = request.POST.get('firstName')
-        last_name = request.POST.get('lastName')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
         age = request.POST.get('age')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -24,7 +27,7 @@ def signup(request):
         )
 
         # Return a success response
-        return JsonResponse({'message': 'User created successfully'})
+        return JsonResponse('It worked', safe=False)
     else:
         # Return an error response for unsupported methods
-        return JsonResponse({'error': 'Method not allowed'}, status=405)
+        return JsonResponse('Not a POST', safe=False)
