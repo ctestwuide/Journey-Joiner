@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.png'
 
 export default function Signup({ history }) {
@@ -12,6 +12,8 @@ export default function Signup({ history }) {
         password: '',
         age: '',
     });
+
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setUser({
@@ -32,7 +34,7 @@ export default function Signup({ history }) {
             .then(response => response.json())
             .then(data => {
               console.log(data);  // Handle the response from the backend
-              history.push('/profile')
+              navigate('/profile'); // Redirect to the profile page
             })
             .catch(error => {
               console.error(error);  // Handle any error that occurred during the request
