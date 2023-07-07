@@ -4,6 +4,7 @@ from .models import User
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from .serializers import UserSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -32,3 +33,16 @@ def signup(request):
 
     # Return a success response
     return Response('It worked', safe=False)
+
+
+@api_view(['GET'])
+def getUsers(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getUser(request, userEmail):
+    users = User.objects.get(email=userEmail)
+    serializer = UserSerializer(users, many=False)
+    return Response(serializer.data)
