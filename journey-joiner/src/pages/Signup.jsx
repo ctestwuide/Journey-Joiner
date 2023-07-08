@@ -34,7 +34,7 @@ export default function Signup({ history }) {
             .then(response => response.json())
             .then(data => {
               console.log(data);  // Handle the response from the backend
-              navigate('/profile'); // Redirect to the profile page
+              navigate(`/profile/${data.email}`); // Redirect to the profile page
             })
             .catch(error => {
               console.error(error);  // Handle any error that occurred during the request

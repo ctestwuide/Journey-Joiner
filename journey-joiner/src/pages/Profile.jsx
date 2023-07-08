@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Dashboard from "../components/Dashboard"
 import defaultProfileImage from "../assets/blank-profile.png"
 
 export default function Profile() {
-  
+    const { email } = useParams();
+    console.log(email);
 
   const [profileData, setProfileData] = useState({
     profilePicture: null,
@@ -37,6 +38,23 @@ export default function Profile() {
     // Submit the profile data to the backend
     console.log(profileData);
   };
+
+  useEffect(() => {
+    // Fetch the user data from the backend and populate the state
+    fetch(`http://127.0.0.1:8000/api/getUser/${email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setProfileData(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [email]);
 
   return (
     <>

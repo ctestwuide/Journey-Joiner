@@ -22,7 +22,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="signup" element={<Signup />} />
     <Route path="login" element={<Login />} />
     <Route path="travel" element={<Travel />} />
-    <Route path="profile" element={<Profile />} />
+    <Route path="profile/:email" element={<Profile />} />
     <Route path="discover" element={<Discover />} />
     <Route path="matches" element={<Matches />} />
   </Route>
