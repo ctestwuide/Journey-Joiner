@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Dashboard from "../components/Dashboard"
 import defaultProfileImage from "../assets/blank-profile.png"
 
 export default function Profile() {
+  
+
   const [profileData, setProfileData] = useState({
     profilePicture: null,
     firstName: '',
@@ -11,6 +14,8 @@ export default function Profile() {
     bio: '',
     budget: '',
     interests: [],
+    email: '',
+    pasword: '',
   });
 
   const handleProfilePictureChange = (e) => {
