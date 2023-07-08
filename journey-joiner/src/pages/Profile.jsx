@@ -33,11 +33,31 @@ export default function Profile() {
     setProfileData({ ...profileData, interests: updatedInterests });
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData({ ...profileData, [name]: value || '' });
+  };
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit the profile data to the backend
-    console.log(profileData);
+    console.group(profileData)
+    fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(profileData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Handle the response from the backend if needed
+      })
+      .catch(error => {
+        console.error(error); // Handle any error that occurred during the request
+      });
   };
+  
 
   useEffect(() => {
     // Fetch the user data from the backend and populate the state
@@ -71,21 +91,21 @@ export default function Profile() {
                     type="text"
                     name="first_name"
                     value={profileData.first_name}
-                    onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })}
+                    onChange={handleChange}
                     placeholder="First Name"
                 />
                 <input
                     type="text"
                     name="last_name"
                     value={profileData.last_name}
-                    onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })}
+                    onChange={handleChange}
                     placeholder="Last Name"
                 />
                 <input
                     type="number"
                     name="age"
                     value={profileData.age}
-                    onChange={(e) => setProfileData({ ...profileData, age: e.target.value })}
+                    onChange={handleChange}
                     placeholder="Age"
                 />
             </div>
@@ -96,7 +116,7 @@ export default function Profile() {
                 <textarea
                 name="bio"
                 value={profileData.bio}
-                onChange={(e) => setProfileData({ ...profileData, bio: e.target.value })}
+                onChange={handleChange}
                 placeholder="Bio"
                 />
             </div>
@@ -106,7 +126,7 @@ export default function Profile() {
                 <select
                 name="budget"
                 value={profileData.budget}
-                onChange={(e) => setProfileData({ ...profileData, budget: e.target.value })}
+                onChange={handleChange}
                 >
                     <option value="">Select Budget</option>
                     <option value="$100">$100</option>
@@ -165,7 +185,7 @@ export default function Profile() {
                     type="email"
                     name="email"
                     value={profileData.email}
-                    onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                    onChange={handleChange}
                     placeholder="Email"
                     />
                 </div>
@@ -175,7 +195,7 @@ export default function Profile() {
                     type="password"
                     name="password"
                     value={profileData.password}
-                    onChange={(e) => setProfileData({ ...profileData, password: e.target.value })}
+                    onChange={handleChange}
                     placeholder="Password"
                     />
                 </div>

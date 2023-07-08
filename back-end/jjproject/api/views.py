@@ -42,12 +42,16 @@ def signup(request):
 
 @api_view(['PUT'])
 def updateUser(request, userEmail):
+    print('update user test: ' + userEmail)
     data = request.data
     user = User.objects.get(email=userEmail)
     serializer = UserSerializer(instance=user, data=data)
 
     if serializer.is_valid():
         serializer.save()
+        print('Serializer is valid:', serializer.data)
+    else:
+        print('Serializer errors:', serializer.errors)
 
     return Response(serializer.data)
 

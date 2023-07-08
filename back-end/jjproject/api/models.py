@@ -9,7 +9,7 @@ class User(models.Model):
     age = models.IntegerField()
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     bio = models.TextField(blank=True)
     budget = models.CharField(max_length=50, blank=True)
     interests = models.ManyToManyField('Interest', blank=True)
