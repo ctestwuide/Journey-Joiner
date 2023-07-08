@@ -55,4 +55,13 @@ def updateUser(request, userEmail):
 
     return Response(serializer.data)
 
+@api_view(['PUT'])
+def updateUserPicture(request, userEmail):
+    user = User.objects.get(email=userEmail)
+    user.profile_picture = request.FILES['profile_picture'] if 'profile_picture' in request.FILES else user.profile_picture
+    user.save()
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+
+
 

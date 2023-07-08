@@ -8,7 +8,7 @@ export default function Profile() {
     console.log(email);
 
     const [profileData, setProfileData] = useState({
-        profilePicture: null,
+        profile_picture: null,
         first_name: '',
         last_name: '',
         age: '',
@@ -29,7 +29,7 @@ export default function Profile() {
     const handleProfilePictureChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setProfileData({ ...profileData, profilePicture: URL.createObjectURL(file) });
+            setProfileData({ ...profileData, profile_picture: URL.createObjectURL(file) });
         }
     };
 
@@ -38,24 +38,48 @@ export default function Profile() {
         setProfileData({ ...profileData, [name]: value || '' });
     };
   
-    const handleSubmit = (e) => {
+    const handleDataSubmit = (e) => {
         e.preventDefault();
-        console.group(profileData)
+        const dataToSend = { ...profileData };
+        delete dataToSend.profile_picture; // We don't send the profilePicture in this request.
+    
         fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(profileData),
+          body: JSON.stringify(dataToSend),
         })
-          .then(response => response.json())
-          .then(data => {
+        .then(response => response.json())
+        .then(data => {
             console.log(data); // Handle the response from the backend if needed
-          })
-          .catch(error => {
+        })
+        .catch(error => {
             console.error(error); // Handle any error that occurred during the request
-          });
-      };
+        });
+    };
+    
+    const handlePictureSubmit = (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append('profile_picture', profileData.profile_picture);
+        fetch(`http://127.0.0.1:8000/api/updateUserPicture/${profileData.email}/`, {
+            method: 'PUT',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Handle the response from the backend if needed
+        })
+        .catch(error => {
+            console.error(error); // Handle any error that occurred during the request
+        });
+    };
+
+    const handleUpdate = (e) => {
+        handleDataSubmit(e);
+        handlePictureSubmit(e);
+    }    
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/getUser/${email}`, {
@@ -80,7 +104,7 @@ export default function Profile() {
     <div className="profile-container">
         <div className="profile-section-left">
             <div className="profile-picture">
-                <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />
+                <img src={profileData.profile_picture || defaultProfileImage} alt="Profile" />
                 <input type="file" accept="image/*" onChange={handleProfilePictureChange} />
             </div>
             <div className="profile-data-left">
@@ -201,7 +225,7 @@ export default function Profile() {
             </div>
 
             <div>
-                <button type="submit" onClick={handleSubmit}>
+                <button type="submit" onClick={handleUpdate}>
                 Update My Travel Card
                 </button>
             </div>
