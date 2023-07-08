@@ -9,8 +9,8 @@ export default function Profile() {
 
   const [profileData, setProfileData] = useState({
     profilePicture: null,
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     age: '',
     bio: '',
     budget: '',
@@ -70,14 +70,14 @@ export default function Profile() {
                 <input
                     type="text"
                     name="firstName"
-                    value={profileData.firstName}
+                    value={profileData.first_name}
                     onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })}
                     placeholder="First Name"
                 />
                 <input
                     type="text"
                     name="lastName"
-                    value={profileData.lastName}
+                    value={profileData.last_name}
                     onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })}
                     placeholder="Last Name"
                 />
