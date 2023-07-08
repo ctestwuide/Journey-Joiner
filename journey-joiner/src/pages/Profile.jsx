@@ -38,25 +38,24 @@ export default function Profile() {
         setProfileData({ ...profileData, [name]: value || '' });
     };
   
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.group(profileData)
-        let formData = new FormData();
-        Object.entries(profileData).forEach(([key, value]) => {
-            if(value != null) {
-                formData.append(key, value);
-            }
-        });
-
-        const response = await fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
-            method: 'PUT',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            console.error("Failed to update user data", response);
-        }
-    };
+        fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(profileData),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data); // Handle the response from the backend if needed
+          })
+          .catch(error => {
+            console.error(error); // Handle any error that occurred during the request
+          });
+      };
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/getUser/${email}`, {
