@@ -69,14 +69,14 @@ export default function Profile() {
             <div className="profile-data-left">
                 <input
                     type="text"
-                    name="firstName"
+                    name="first_name"
                     value={profileData.first_name}
                     onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })}
                     placeholder="First Name"
                 />
                 <input
                     type="text"
-                    name="lastName"
+                    name="last_name"
                     value={profileData.last_name}
                     onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })}
                     placeholder="Last Name"
