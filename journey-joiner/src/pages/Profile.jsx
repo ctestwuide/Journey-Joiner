@@ -7,74 +7,72 @@ export default function Profile() {
     const { email } = useParams();
     console.log(email);
 
-  const [profileData, setProfileData] = useState({
-    profilePicture: null,
-    first_name: '',
-    last_name: '',
-    age: '',
-    bio: '',
-    budget: '',
-    interests: [],
-    email: '',
-    pasword: '',
-  });
+    const [profileData, setProfileData] = useState({
+        profilePicture: null,
+        first_name: '',
+        last_name: '',
+        age: '',
+        bio: '',
+        budget: '',
+        interest_beach_bum: false,
+        interest_foodie: false,
+        interest_adventurer: false,
+        interest_museum_magnet: false,
+        email: '',
+        password: '',
+    });
 
-  const handleProfilePictureChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfileData({ ...profileData, profilePicture: URL.createObjectURL(file) });
-    }
-  };
+    const handleInterestClick = (interest) => {
+        setProfileData(prevState => ({ ...prevState, [interest]: !prevState[interest] }));
+    };
 
-  const handleInterestClick = (interest) => {
-    const updatedInterests = profileData.interests.includes(interest)
-      ? profileData.interests.filter((item) => item !== interest)
-      : [...profileData.interests, interest];
-    setProfileData({ ...profileData, interests: updatedInterests });
-  };
+    const handleProfilePictureChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setProfileData({ ...profileData, profilePicture: URL.createObjectURL(file) });
+        }
+    };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: value || '' });
-  };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProfileData({ ...profileData, [name]: value || '' });
+    };
   
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.group(profileData)
+        let formData = new FormData();
+        Object.entries(profileData).forEach(([key, value]) => {
+            if(value != null) {
+                formData.append(key, value);
+            }
+        });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.group(profileData)
-    fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(profileData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data); // Handle the response from the backend if needed
-      })
-      .catch(error => {
-        console.error(error); // Handle any error that occurred during the request
-      });
-  };
-  
+        const response = await fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
+            method: 'PUT',
+            body: formData,
+        });
 
-  useEffect(() => {
-    // Fetch the user data from the backend and populate the state
-    fetch(`http://127.0.0.1:8000/api/getUser/${email}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setProfileData(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [email]);
+        if (!response.ok) {
+            console.error("Failed to update user data", response);
+        }
+    };
+
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/getUser/${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            setProfileData(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, [email]);
 
   return (
     <>
@@ -141,33 +139,34 @@ export default function Profile() {
                 <label>Interests:</label>
                 <div className="interests-buttons">
                     <button
-                        type="button"
-                        className={profileData.interests.includes('beach bum') ? 'selected' : ''}
-                        onClick={() => handleInterestClick('beach bum')}
+                    type="button"
+                    className={profileData.interest_beach_bum ? 'selected' : ''}
+                    onClick={() => handleInterestClick('interest_beach_bum')}
                     >
                     Beach Bum
                     </button>
                     <button
-                        type="button"
-                        className={profileData.interests.includes('foodie') ? 'selected' : ''}
-                        onClick={() => handleInterestClick('foodie')}
+                    type="button"
+                    className={profileData.interest_foodie ? 'selected' : ''}
+                    onClick={() => handleInterestClick('interest_foodie')}
                     >
                     Foodie
                     </button>
                     <button
-                        type="button"
-                        className={profileData.interests.includes('adventurer') ? 'selected' : ''}
-                        onClick={() => handleInterestClick('adventurer')}
+                    type="button"
+                    className={profileData.interest_adventurer ? 'selected' : ''}
+                    onClick={() => handleInterestClick('interest_adventurer')}
                     >
                     Adventurer
                     </button>
                     <button
-                        type="button"
-                        className={profileData.interests.includes('museum magnet') ? 'selected' : ''}
-                        onClick={() => handleInterestClick('museum magnet')}
+                    type="button"
+                    className={profileData.interest_museum_magnet ? 'selected' : ''}
+                    onClick={() => handleInterestClick('interest_museum_magnet')}
                     >
                     Museum Magnet
                     </button>
+
                 </div>
             </div>
         </div>
@@ -185,8 +184,9 @@ export default function Profile() {
                     type="email"
                     name="email"
                     value={profileData.email}
-                    onChange={handleChange}
+                    // onChange={handleChange}
                     placeholder="Email"
+                    disabled
                     />
                 </div>
                 <div>

@@ -12,7 +12,10 @@ class User(models.Model):
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     bio = models.TextField(blank=True)
     budget = models.CharField(max_length=50, blank=True)
-    interests = models.ManyToManyField('Interest', blank=True)
+    interest_beach_bum = models.BooleanField(default=False)
+    interest_foodie = models.BooleanField(default=False)
+    interest_adventurer = models.BooleanField(default=False)
+    interest_museum_magnet = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
