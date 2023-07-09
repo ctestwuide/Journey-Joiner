@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
+import Header from '../components/Header';
 import logo from '../assets/logo.png'
 
 export default function Login() {
@@ -22,6 +23,8 @@ export default function Login() {
     };
 
     return (
+        <>
+        <Header email=""/>
         <main className="main-background">
             <div className="login-container">
                 <h2>Log In</h2>
@@ -49,5 +52,6 @@ export default function Login() {
                 <p>Don't have an account? <NavLink to="/signup">Sign Up</NavLink></p>
             </div>
         </main>
+        </>
     );
 }

@@ -2,7 +2,8 @@ import React from "react"
 import { Link, NavLink } from "react-router-dom"
 import logo from "../assets/logo.png"
 
-export default function Header() {
+export default function Header(props) {
+    const email = props.email;
     
     return (
         <header className="header">
@@ -11,12 +12,14 @@ export default function Header() {
                 <span> Journey Joiner </span>
             </Link>
             <nav className="nav-links">
-                <NavLink className="nav-link" to="/login">
-                    Log in
+                <NavLink className="nav-link" to={email ? "/" : "/login"}>
+                    {email ? "Log out" : "Log in"}
                 </NavLink>
+                {!email && 
                 <NavLink className="nav-link" to="/signup">
                     Sign up
-                </NavLink>
+                </NavLink> 
+                }
             </nav>
         </header>
     )

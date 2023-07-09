@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import TravelCard from '../components/TravelCard';
+import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
 import defaultProfileImage from '../assets/blank-profile.png';
 import logo from '../assets/logo.png';
 
 export default function Discover() {
+  const { email } = useParams();
+
   const profileData = {
     id: 1,
     profilePicture: defaultProfileImage,
@@ -38,8 +42,10 @@ export default function Discover() {
   };
 
   return (
+    <>
+    <Header email={email}/>
     <main className="main-background">
-      <Dashboard />
+      <Dashboard email={email}/>
       <section className="discover-container">
         <div className="discover-container-title">
           <img src={logo} alt="Journey Joiner Logo" width="70px" />
@@ -56,5 +62,6 @@ export default function Discover() {
         </div>
       </section>
     </main>
+    </>
   );
 }

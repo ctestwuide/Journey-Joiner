@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Dashboard from '../components/Dashboard';
+import Header from '../components/Header';
 import TravelCardSmall from '../components/TravelCardSmall';
 import TravelCardMini from '../components/TravelCardMini';
 import defaultProfileImage from '../assets/blank-profile.png';
@@ -7,6 +9,8 @@ import logo from '../assets/logo.png';
 import DirectMessaging from '../components/DirectMessaging';
 
 export default function Matches() {
+  const { email } = useParams();
+
   const profiles = [
     {
       id: "1",
@@ -78,8 +82,10 @@ export default function Matches() {
   };
 
   return (
+    <>
+    <Header email={email}/>
     <main className="main-background">
-      <Dashboard />
+      <Dashboard email={email}/>
       <div className="matches-messages-container">
         <section className="matches-container">
           <div className="matches-container-title">
@@ -109,5 +115,6 @@ export default function Matches() {
         </section>
       </div>
     </main>
+    </>
   );
 }

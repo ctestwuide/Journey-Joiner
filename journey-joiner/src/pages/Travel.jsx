@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import logo from '../assets/logo.png'
+import Header from '../components/Header';
 import Dashboard from '../components/Dashboard'
 
 export default function Travel() {
+    const { email } = useParams();
     const [travelData, setTravelData] = useState({
         location: '',
         days: '',
@@ -34,8 +37,10 @@ export default function Travel() {
     };
 
     return (
+      <>
+        <Header email={email}/>
         <main className="main-background">
-          <Dashboard />
+          <Dashboard email={email}/>
           <div className="travel-container">
             <div className="travel-container-title">
               <img src={logo} alt="Journey Joiner Logo" width="70px" />
@@ -73,6 +78,7 @@ export default function Travel() {
             </div>
           </div>
         </main>
+        </>
       );
       
 }

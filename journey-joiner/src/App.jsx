@@ -21,10 +21,10 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element={<Home />} />
     <Route path="signup" element={<Signup />} />
     <Route path="login" element={<Login />} />
-    <Route path="travel" element={<Travel />} />
+    <Route path="travel/:email" element={<Travel />} />
     <Route path="profile/:email" element={<Profile />} />
-    <Route path="discover" element={<Discover />} />
-    <Route path="matches" element={<Matches />} />
+    <Route path="discover/:email" element={<Discover />} />
+    <Route path="matches/:email" element={<Matches />} />
   </Route>
 ))
 

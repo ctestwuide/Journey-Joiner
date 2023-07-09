@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
 import Dashboard from "../components/Dashboard";
 import defaultProfileImage from "../assets/blank-profile.png";
 
@@ -103,8 +104,9 @@ export default function Profile() {
 
   return (
     <>
+    <Header email={email}/>
     <main className="main-background">
-    <Dashboard />
+    <Dashboard email={email}/>
     <div className="profile-container">
         <div className="profile-section-left">
             <div className="profile-picture">

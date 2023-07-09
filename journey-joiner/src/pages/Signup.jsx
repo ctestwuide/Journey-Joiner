@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.png'
+import Header from '../components/Header';
 
 export default function Signup({ history }) {
 
@@ -46,6 +47,8 @@ export default function Signup({ history }) {
       
 
     return (
+        <>
+        <Header email=""/>
         <main className="main-background">
             <div className="signup-container">
                 <h2>Sign Up</h2>
@@ -97,16 +100,6 @@ export default function Signup({ history }) {
                 <p>Already have an account? <NavLink to="/login">Log in</NavLink></p>
             </div>
         </main>
-    );    // async function getUser(userEmail) {
-    //     const response = await fetch(`http:://127.0.0.1:8000/api/getuser/${userEmail}`)
-    //     const data = await response.json()
-    //     return data
-    // }
-}
-
-
-    // async function getUser(userEmail) {
-    //     const response = await fetch(`http:://127.0.0.1:8000/api/getuser/${userEmail}`)
-    //     const data = await response.json()
-    //     return data
-    // }
+        </>
+    );
+    }

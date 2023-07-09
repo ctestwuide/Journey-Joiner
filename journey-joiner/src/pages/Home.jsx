@@ -1,10 +1,12 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import Header from '../components/Header';
 import logo from "../assets/logo.png"
 
 export default function Home() {
     return (
         <>
+            <Header email=""/>
             <main className="main-background">
                 <div className="home-box">
                     
