@@ -1,4 +1,19 @@
 from django.db import models
+import os
+from uuid import uuid4
+
+def path_and_rename(instance, filename):
+    upload_to = 'profile_pictures'
+    ext = filename.split('.')[-1]  # get file extension
+    # check whether the instance has an id
+    if instance.user_id:
+        # remove extension in original file name
+        filename_no_ext = os.path.splitext(filename)[0]
+        # add a timestamp to filename to avoid duplicate filenames
+        filename = '{}_{}.{}'.format(filename_no_ext, uuid4().hex, ext)
+    else:
+        filename = '{}.{}'.format(uuid4().hex, ext)
+    return os.path.join(upload_to, str(instance.user_id), filename)
 
 # Create your models here.
 
@@ -9,7 +24,7 @@ class User(models.Model):
     age = models.IntegerField()
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to=path_and_rename, blank=True, null=True)
     bio = models.TextField(blank=True)
     budget = models.CharField(max_length=50, blank=True)
     interest_beach_bum = models.BooleanField(default=False)

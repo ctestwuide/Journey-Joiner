@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Dashboard from "../components/Dashboard"
-import defaultProfileImage from "../assets/blank-profile.png"
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Dashboard from "../components/Dashboard";
+import defaultProfileImage from "../assets/blank-profile.png";
 
 export default function Profile() {
     const { email } = useParams();
-    console.log(email);
-
+    const [previewImage, setPreviewImage] = useState(null);
+    
     const [profileData, setProfileData] = useState({
         profile_picture: null,
         first_name: '',
@@ -29,7 +29,8 @@ export default function Profile() {
     const handleProfilePictureChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setProfileData({ ...profileData, profile_picture: URL.createObjectURL(file) });
+            setProfileData({ ...profileData, profile_picture: file });
+            setPreviewImage(URL.createObjectURL(file));
         }
     };
 
@@ -41,7 +42,7 @@ export default function Profile() {
     const handleDataSubmit = (e) => {
         e.preventDefault();
         const dataToSend = { ...profileData };
-        delete dataToSend.profile_picture; // We don't send the profilePicture in this request.
+        delete dataToSend.profile_picture; 
     
         fetch(`http://127.0.0.1:8000/api/updateUser/${profileData.email}/`, {
           method: 'PUT',
@@ -52,10 +53,10 @@ export default function Profile() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Handle the response from the backend if needed
+            console.log(data);
         })
         .catch(error => {
-            console.error(error); // Handle any error that occurred during the request
+            console.error(error);
         });
     };
     
@@ -63,16 +64,18 @@ export default function Profile() {
         e.preventDefault();
         let formData = new FormData();
         formData.append('profile_picture', profileData.profile_picture);
+        console.log(formData.get('profile_picture')); // Debugging line
+        
         fetch(`http://127.0.0.1:8000/api/updateUserPicture/${profileData.email}/`, {
             method: 'PUT',
             body: formData,
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Handle the response from the backend if needed
+            console.log(data);
         })
         .catch(error => {
-            console.error(error); // Handle any error that occurred during the request
+            console.error(error);
         });
     };
 
@@ -91,6 +94,7 @@ export default function Profile() {
         .then(response => response.json())
         .then(data => {
             setProfileData(data);
+            setPreviewImage(data.profile_picture); // Set the existing image URL as the preview image
         })
         .catch(error => {
             console.error(error);
@@ -104,7 +108,7 @@ export default function Profile() {
     <div className="profile-container">
         <div className="profile-section-left">
             <div className="profile-picture">
-                <img src={profileData.profile_picture || defaultProfileImage} alt="Profile" />
+                <img src={previewImage || defaultProfileImage} alt="Profile" />
                 <input type="file" accept="image/*" onChange={handleProfilePictureChange} />
             </div>
             <div className="profile-data-left">
