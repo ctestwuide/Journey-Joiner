@@ -20,21 +20,39 @@ export default function Travel() {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // Make your API call here with the travelData object
-        // and then update apiResponse with the returned data
-        // Here's a mockup:
-        const response = await fetch('your-api-url', {
-            method: 'POST', 
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(travelData),
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      const url = `https://ai-trip-planner.p.rapidapi.com/?days=${travelData.days}&destination=${encodeURIComponent(travelData.location)}`;
+  
+      const options = {
+          method: 'GET',
+          headers: {
+              'X-RapidAPI-Key': '4bd7c2a1fdmsh881fc8f930b2362p1d584djsn77e47d77c6c1',
+              'X-RapidAPI-Host': 'ai-trip-planner.p.rapidapi.com'
+          }
+      };
+  
+      fetch(url, options)
+          .then(response => response.json())
+          .then(data => {
+              let formattedResponse = '';
+              
+              data.plan.forEach(dayPlan => {
+                  formattedResponse += `Day ${dayPlan.day}\nActivities:\n`;
+                  dayPlan.activities.forEach(activity => {
+                      formattedResponse += `${activity.time}: ${activity.description}\n`;
+                  });
+                  formattedResponse += '\n'; // Adds a newline between different days
+              });
+  
+              setApiResponse(formattedResponse);
+          })
+          .catch(error => {
+              console.error(error);
           });
-        const data = await response.json();
-        setApiResponse(data);
-    };
+  };
+  
 
     return (
       <>
@@ -70,7 +88,7 @@ export default function Travel() {
             <div className="api-response" id="api-response">
                 <textarea
                 value={apiResponse}
-                readOnly
+                onChange={(e) => setApiResponse(e.target.value)}
                 rows={10}
                 cols={50}
                 placeholder="API Response"
@@ -80,5 +98,4 @@ export default function Travel() {
         </main>
         </>
       );
-      
 }
