@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../assets/logo.png'
 import Header from '../components/Header';
 
-export default function Signup({ history }) {
-
+export default function Signup() {
+    const navigate = useNavigate()
 
     const [user, setUser] = useState({
         first_name: '',
@@ -14,7 +14,7 @@ export default function Signup({ history }) {
         age: '',
     });
 
-    const navigate = useNavigate()
+
 
     const handleChange = (e) => {
         setUser({
