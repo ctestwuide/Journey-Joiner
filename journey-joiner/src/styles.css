@@ -279,6 +279,10 @@
     background-color: #5012d4; /* changes the background color when the mouse hovers over the button */
 }
 
+.error-message {
+  color: red;
+}
+
 
 /* -------------------------Travel--------------------------- */
 

@@ -6,6 +6,9 @@ import logo from '../assets/logo.png'
 export default function Login() {
     const navigate = useNavigate()
 
+    const [errorMessage, setErrorMessage] = useState(null);
+
+
     const [user, setUser] = useState({
         email: '',
         password: '',
@@ -20,6 +23,8 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setErrorMessage(null);
+
         
         fetch('http://127.0.0.1:8000/api/login/', {
             method: 'POST',
@@ -32,7 +37,7 @@ export default function Login() {
         .then(data => {
             if (data.error) {
                 console.log(data.error);
-                // Handle login failure. For example, set an error message in your state and display it to the user
+                setErrorMessage("Invalid email or password. Please try again.");
             } else {
                 // Login is successful
                 navigate(`/profile/${data.email}`);
@@ -40,16 +45,11 @@ export default function Login() {
         })
         .catch((error) => {
             console.error(error);
-            // Handle network errors here
+            setErrorMessage("An unexpected error occurred. Please try again later.");
         });
+        
     };
     
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     //Need to handle API request stuff here
-    //     navigate(`/profile/${data.email}`);
-    // };
 
     return (
         <>
@@ -59,6 +59,8 @@ export default function Login() {
                 <h2>Log In</h2>
                 <img src={logo} alt="Journey Joiner Logo" width="100px" />
                 <form className="signup-form" onSubmit={handleSubmit}>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    {errorMessage && <br />}
                     <input
                         type="email"
                         name="email"

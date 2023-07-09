@@ -95,12 +95,17 @@ export default function Profile() {
         .then(response => response.json())
         .then(data => {
             setProfileData(data);
-            setPreviewImage(data.profile_picture); // Set the existing image URL as the preview image
+            if (data.profile_picture) {
+                // append the base URL to the relative URL
+                const imageUrl = `http://127.0.0.1:8000${data.profile_picture}`;
+                setPreviewImage(imageUrl);
+            }
         })
         .catch(error => {
             console.error(error);
         });
     }, [email]);
+    
 
   return (
     <>

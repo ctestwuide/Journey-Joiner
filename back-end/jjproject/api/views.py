@@ -1,10 +1,11 @@
 from django.shortcuts import render
-# from django.http import JsonResponse
+from django.http import JsonResponse
 from .models import User
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
+# from django.contrib.auth import authenticate
 
 # Create your views here.
 @api_view(['GET'])
@@ -38,6 +39,24 @@ def signup(request):
     serializer = UserSerializer(user, many=False)
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def login(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    try:
+        user = User.objects.get(email=email)
+        if user.password == password:
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        else:
+            return JsonResponse({'error': 'Invalid Login Credentials'})
+
+    except User.DoesNotExist:
+        return JsonResponse({'error': 'Invalid Login Credentials'})
+
 
 
 @api_view(['PUT'])
