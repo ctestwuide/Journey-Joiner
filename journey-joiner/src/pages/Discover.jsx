@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import TravelCard from '../components/TravelCard';
 import Header from '../components/Header';
@@ -8,6 +8,14 @@ import logo from '../assets/logo.png';
 
 export default function Discover() {
   const { email } = useParams();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    fetch(`/api/getUser/${email}`)
+      .then(response => response.json())
+      .then(userData => setUserId(userData.id))
+      .catch(err => console.error(err));
+  }, [email]);
 
   const profileData = {
     id: 1,
