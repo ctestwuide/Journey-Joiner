@@ -51,7 +51,7 @@ export default function TravelCard({ profileData }) {
       </div>
       <div className="travel-card-right">
         <div className="travel-card-bio">
-          <p>Bio: {profileData.bio}</p>
+          <p>{profileData.bio}</p>
         </div>
 
         <div className="travel-card-interests">
