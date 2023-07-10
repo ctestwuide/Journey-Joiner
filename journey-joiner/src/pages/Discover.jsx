@@ -111,17 +111,20 @@ export default function Discover() {
             <div>
               <p className="no-profiles">You've reached the end...</p>
               <p className="no-profiles">of available profiles</p>
-            </div>}
+            </div>
+        }
 
-        <div className="discover-match-pass">
-        <button className="pass-button" onClick={handlePassClick} disabled={isButtonClicked}>
-          Pass
-        </button>
-        <button className="match-button" onClick={handleMatchClick} disabled={isButtonClicked}>
-          Match
-        </button>
+        {currentProfile && 
+          <div className="discover-match-pass">
+            <button className="pass-button" onClick={handlePassClick} disabled={isButtonClicked}>
+              Pass
+            </button>
+            <button className="match-button" onClick={handleMatchClick} disabled={isButtonClicked}>
+              Match
+            </button>
+          </div>
+        }    
 
-        </div>
       </section>
     </main>
     </>
