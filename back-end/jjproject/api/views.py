@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import *
 from rest_framework.response import Response
@@ -90,3 +91,31 @@ def getUnseenUsers(request, userId):
     serializer = UserSerializer(unseen_users, many=True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def pass_user(request, user_id, target_id):
+    # Get the user and the target user objects
+    user = get_object_or_404(User, user_id=user_id)
+    target_user = get_object_or_404(User, user_id=target_id)
+
+    # Create a new Pass instance
+    new_pass = Pass(sender=user, receiver=target_user)
+    new_pass.save()
+
+    return JsonResponse({"message": f"User {user_id} passed User {target_id}"})
+
+@api_view(['POST'])
+def like_user(request, user_id, target_id):
+    # Get the user and the target user objects
+    user = get_object_or_404(User, user_id=user_id)
+    target_user = get_object_or_404(User, user_id=target_id)
+
+    # Create a new Like instance
+    new_like = Like(sender=user, receiver=target_user)
+    new_like.save()
+
+    # Check if there is a mutual like (a match)
+    if Like.objects.filter(sender=target_user, receiver=user).exists():
+        new_match = Match(user1=user, user2=target_user)
+        new_match.save()
+
+    return JsonResponse({"message": f"User {user_id} liked User {target_id}"})

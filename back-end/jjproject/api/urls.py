@@ -12,4 +12,6 @@ urlpatterns = [
     path('updateUser/<str:userEmail>/', views.updateUser, name='updateUser'),
     path('updateUserPicture/<str:userEmail>/', views.updateUserPicture, name='updateUserPicture'),
     path('getUnseenUsers/<int:userId>/', views.getUnseenUsers, name='getUnseenUsers'),
+    path('passUser/<int:user_id>/<int:target_id>', views.pass_user, name='pass_user'),
+    path('likeUser/<int:user_id>/<int:target_id>', views.like_user, name='like_user'),
 ]

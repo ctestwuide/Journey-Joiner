@@ -7,8 +7,14 @@ import museumMagnetImage from "../assets/museum-magnet.png"
 
 
 export default function TravelCard({ profileData }) {
+  console.log('Rendering TravelCard with profileData:', profileData);
+
 
   const renderInterestImages = () => {
+
+    if (!profileData) {
+      return null;
+    }
     const images = [];
     if (profileData.interest_beach_bum) {
       images.push(<img src={beachBumImage} alt="Beach Bum" width="50" height="50" />);
@@ -24,6 +30,11 @@ export default function TravelCard({ profileData }) {
     }
     return images;
   };
+
+  
+  if (!profileData) {
+    return null;
+  }
   
 
 
