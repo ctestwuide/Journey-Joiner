@@ -9,31 +9,32 @@ import museumMagnetImage from "../assets/museum-magnet.png"
 export default function TravelCard({ profileData }) {
 
   const renderInterestImages = () => {
-    return profileData.interests.map((interest) => {
-      switch (interest) {
-        case 'beach bum':
-          return <img src={beachBumImage} alt="Beach Bum" width="50" height="50" />;
-        case 'foodie':
-          return <img src={foodieImage} alt="Foodie" width="50" height="50" />;
-        case 'adventurer':
-          return <img src={adventurerImage} alt="Adventurer" width="50" height="50" />;
-        case 'museum magnet':
-          return <img src={museumMagnetImage} alt="Museum Magnet" width="50" height="50" />;
-        default:
-          return null;
-      }
-    });
+    const images = [];
+    if (profileData.interest_beach_bum) {
+      images.push(<img src={beachBumImage} alt="Beach Bum" width="50" height="50" />);
+    }
+    if (profileData.interest_foodie) {
+      images.push(<img src={foodieImage} alt="Foodie" width="50" height="50" />);
+    }
+    if (profileData.interest_adventurer) {
+      images.push(<img src={adventurerImage} alt="Adventurer" width="50" height="50" />);
+    }
+    if (profileData.interest_museum_magnet) {
+      images.push(<img src={museumMagnetImage} alt="Museum Magnet" width="50" height="50" />);
+    }
+    return images;
   };
+  
 
 
   return (
     <div className="travel-card-container">
       <div className="travel-card-left">
         <div className="travel-card-profile-picture">
-          <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />
+          <img src={profileData.profile_picture || defaultProfileImage} alt="Profile" />
         </div>
         <div className="travel-card-data-left">
-          <p id="travel-card-name">{profileData.firstName}, {profileData.age}</p>
+          <p id="travel-card-name">{profileData.first_name}, {profileData.age}</p>
           <p id="travel-card-budget">Budget: {profileData.budget}/day</p>
         </div>
       </div>

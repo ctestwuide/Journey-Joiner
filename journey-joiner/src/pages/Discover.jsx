@@ -11,9 +11,9 @@ export default function Discover() {
 
   const profileData = {
     id: 1,
-    profilePicture: defaultProfileImage,
-    firstName: 'John',
-    lastName: 'Doe',
+    profile_picture: defaultProfileImage,
+    first_name: 'John',
+    last_name: 'Doe',
     age: 30,
     bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
