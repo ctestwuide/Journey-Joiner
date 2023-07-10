@@ -31,7 +31,7 @@ export default function TravelCardSmall({ profileData }) {
             <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />
           </div>
           <div className="travel-card-small-data-left">
-            <p id="travel-card-small-name">{profileData.firstName}, {profileData.age}</p>
+            <p id="travel-card-small-name">{profileData.first_name}, {profileData.age}</p>
             <p id="travel-card-small-budget">Budget: {profileData.budget}/day</p>
           </div>
         </div>

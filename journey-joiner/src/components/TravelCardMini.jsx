@@ -7,12 +7,12 @@ export default function TravelCardMini({ profileData, onClick }) {
   };
 
   return (
-    <div className="travel-card-mini-container" onClick={handleClick} key={profileData.id}>
+    <div className="travel-card-mini-container" onClick={handleClick} key={profileData.user_id}>
       <div className="travel-card-mini-profile-picture">
-        <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />
+        <img src={profileData.profilepicture || defaultProfileImage} alt="Profile" />
       </div>
       <div className="travel-card-mini-data">
-        <p id="travel-card-mini-name">{profileData.firstName}, {profileData.age}</p>
+        <p id="travel-card-mini-name">{profileData.first_name}, {profileData.age}</p>
       </div>
     </div>
   );
