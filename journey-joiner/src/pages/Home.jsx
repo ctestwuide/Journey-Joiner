@@ -28,7 +28,7 @@ export default function Home() {
                         <p>1. Create an account</p>
                         <p>2. Enter your availability, budget, and travel preferences</p>
                         <p>3. Match with other aspiring travelers</p>
-                        <p>4. Take the trip of a lifetime with a custom made itinerary</p>
+                        <p id="last-step">4. Take the trip of a lifetime with a custom made itinerary</p>
                     </div>
 
                 </div>
