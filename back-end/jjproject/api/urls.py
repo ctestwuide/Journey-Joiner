@@ -11,4 +11,5 @@ urlpatterns = [
     path('getUser/<str:userEmail>/', views.getUser, name='getUser'),
     path('updateUser/<str:userEmail>/', views.updateUser, name='updateUser'),
     path('updateUserPicture/<str:userEmail>/', views.updateUserPicture, name='updateUserPicture'),
+    path('getUnseenUsers/<int:userId>/', views.getUnseenUsers, name='getUnseenUsers'),
 ]
