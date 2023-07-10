@@ -107,9 +107,12 @@ export default function Discover() {
           <img src={logo} alt="Journey Joiner Logo" width="70px" />
           <h2>Discover: Match or Pass</h2>
         </div>
-        {currentProfile ? <TravelCard profileData={currentProfile} isButtonClicked={isButtonClicked} /> : <p>No profiles to show</p>}
+        {currentProfile ? <TravelCard profileData={currentProfile} isButtonClicked={isButtonClicked} /> : 
+            <div>
+              <p className="no-profiles">You've reached the end...</p>
+              <p className="no-profiles">of available profiles</p>
+            </div>}
 
-        {/* <TravelCard profileData={currentProfile} isButtonClicked={isButtonClicked} /> */}
         <div className="discover-match-pass">
         <button className="pass-button" onClick={handlePassClick} disabled={isButtonClicked}>
           Pass

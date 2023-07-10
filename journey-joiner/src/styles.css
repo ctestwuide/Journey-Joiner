@@ -584,6 +584,13 @@
   .discover-match-pass button:active {
     transform: scale(1.1);
   }
+
+  .no-profiles {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: yellow;
+    text-align: center;
+  }
   
 
   /* ----------------------Travel Card Component------------------- */
