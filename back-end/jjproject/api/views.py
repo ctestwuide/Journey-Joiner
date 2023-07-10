@@ -1,11 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import User
-# from django.views.decorators.csrf import csrf_exempt
+from .models import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer
-# from django.contrib.auth import authenticate
 
 # Create your views here.
 @api_view(['GET'])
