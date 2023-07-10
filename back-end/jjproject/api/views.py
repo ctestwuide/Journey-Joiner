@@ -83,4 +83,12 @@ def updateUserPicture(request, userEmail):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getUnseenUsers(request, userId):
+    # Fetch the users who the logged-in user has not liked or passed yet
+    liked_users = Like.objects.filter(sender=userId).values_list('receiver', flat=True)
+    passed_users = Pass.objects.filter(sender=userId).values_list('receiver', flat=True)
+    unseen_users = User.objects.exclude(user_id__in=liked_users).exclude(user_id__in=passed_users)
+    serializer = UserSerializer(unseen_users, many=True)
+    return Response(serializer.data)
 
