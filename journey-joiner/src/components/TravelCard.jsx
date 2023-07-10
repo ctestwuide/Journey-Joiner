@@ -11,25 +11,25 @@ export default function TravelCard({ profileData }) {
 
 
   const renderInterestImages = () => {
-
     if (!profileData) {
       return null;
     }
     const images = [];
     if (profileData.interest_beach_bum) {
-      images.push(<img src={beachBumImage} alt="Beach Bum" width="50" height="50" />);
+      images.push(<img key="beachBum" src={beachBumImage} alt="Beach Bum" width="50" height="50" />);
     }
     if (profileData.interest_foodie) {
-      images.push(<img src={foodieImage} alt="Foodie" width="50" height="50" />);
+      images.push(<img key="foodie" src={foodieImage} alt="Foodie" width="50" height="50" />);
     }
     if (profileData.interest_adventurer) {
-      images.push(<img src={adventurerImage} alt="Adventurer" width="50" height="50" />);
+      images.push(<img key="adventurer" src={adventurerImage} alt="Adventurer" width="50" height="50" />);
     }
     if (profileData.interest_museum_magnet) {
-      images.push(<img src={museumMagnetImage} alt="Museum Magnet" width="50" height="50" />);
+      images.push(<img key="museumMagnet" src={museumMagnetImage} alt="Museum Magnet" width="50" height="50" />);
     }
     return images;
   };
+  
 
   
   if (!profileData) {

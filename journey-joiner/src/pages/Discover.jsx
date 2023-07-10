@@ -19,6 +19,12 @@ export default function Discover() {
       .then(userData => {
         console.log('Received user data:', userData);
         setUserId(userData.user_id);
+
+        // append the base URL to the relative URL
+        if (userData.profile_picture) {
+            const imageUrl = `http://127.0.0.1:8000${userData.profile_picture}`;
+            userData.profile_picture = imageUrl;
+        }
   
         // Get unseen users
         return fetch(`http://127.0.0.1:8000/api/getUnseenUsers/${userData.user_id}`);
@@ -26,11 +32,20 @@ export default function Discover() {
       .then(response => response.json())
       .then(unseenUserData => {
         console.log('Received unseen user data:', unseenUserData);
+        unseenUserData = unseenUserData.map(userData => {
+            // append the base URL to the relative URL
+            if (userData.profile_picture) {
+                const imageUrl = `http://127.0.0.1:8000${userData.profile_picture}`;
+                userData.profile_picture = imageUrl;
+            }
+            return userData;
+        });
         setUnseenUsers(unseenUserData);
         setCurrentProfile(unseenUserData[0]);
       })
       .catch(err => console.error('Error during fetching user and unseen users:', err));
   }, [email]);
+
   
 
 
