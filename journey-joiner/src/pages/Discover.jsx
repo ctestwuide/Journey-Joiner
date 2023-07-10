@@ -19,7 +19,10 @@ export default function Discover() {
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     budget: '$300',
-    interests: ['beach bum', 'foodie', 'adventurer', 'museum magnet'],
+    interest_beach_bum: true,
+    interest_foodie: false,
+    interest_adventurer: true,
+    interest_museum_magnet: false,
   };
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
