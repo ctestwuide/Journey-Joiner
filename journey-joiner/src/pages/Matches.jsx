@@ -1,78 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Dashboard from '../components/Dashboard';
 import Header from '../components/Header';
 import TravelCardSmall from '../components/TravelCardSmall';
 import TravelCardMini from '../components/TravelCardMini';
-import defaultProfileImage from '../assets/blank-profile.png';
 import logo from '../assets/logo.png';
 import DirectMessaging from '../components/DirectMessaging';
 
 export default function Matches() {
   const { email } = useParams();
 
-  const profiles = [
-    {
-      id: "1",
-      profilePicture: defaultProfileImage,
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 30,
-      bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-      budget: '$300',
-      interests: ['beach bum', 'foodie', 'adventurer', 'museum magnet'],
-    },
-    {
-        id: "2",
-        profilePicture: defaultProfileImage,
-        firstName: 'Joe',
-        lastName: 'Doe',
-        age: 22,
-        bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        budget: '$300',
-        interests: ['beach bum', 'adventurer', 'museum magnet'],
-      },
-      {
-        id: "3",
-        profilePicture: defaultProfileImage,
-        firstName: 'Lindsey',
-        lastName: 'Doe',
-        age: 24,
-        bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        budget: '$300',
-        interests: ['beach bum', 'adventurer', 'museum magnet'],
-      },
-      {
-        id: "4",
-        profilePicture: defaultProfileImage,
-        firstName: 'Marius',
-        lastName: 'Doe',
-        age: 28,
-        bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        budget: '$300',
-        interests: ['beach bum', 'adventurer', 'museum magnet'],
-      },
-      {
-        id: "5",
-        profilePicture: defaultProfileImage,
-        firstName: 'Tom',
-        lastName: 'Doe',
-        age: 53,
-        bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        budget: '$300',
-        interests: ['beach bum', 'adventurer', 'museum magnet'],
-      },
-  ];
+  const [matches, setMatches] = useState([]);
+
 
   const [selectedProfile, setSelectedProfile] = useState(null);
 
@@ -80,6 +19,25 @@ export default function Matches() {
     console.log('Clicked profile:', profile);
     setSelectedProfile({ ...profile });
   };
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/getMatches/${email}`)
+      .then(response => response.json())
+      .then(matchesData => {
+        console.log('Received matches data:', matchesData);
+        matchesData = matchesData.map(matchData => {
+          // append the base URL to the relative URL
+          if (matchData.profile_picture) {
+              const imageUrl = `http://127.0.0.1:8000${matchData.profile_picture}`;
+              matchData.profile_picture = imageUrl;
+          }
+          return matchData;
+        });
+        setMatches(matchesData);
+      })
+      .catch(err => console.error('Error during fetching matches:', err));
+  }, [email]);
+  
 
   return (
     <>
@@ -93,14 +51,16 @@ export default function Matches() {
             <h2>Matches</h2>
           </div>
           <div className="matches-container-profiles">
-            {profiles.map((profile) => (
-              <TravelCardMini
-                key={profile.id}
-                profileData={profile}
-                className="matches-container-profile"
-                onClick={() => handleProfileClick(profile)}
-              />
-            ))}
+            
+          {matches.map((profile) => (
+            <TravelCardMini
+              key={profile.user_id}
+              profileData={profile}
+              className="matches-container-profile"
+              onClick={() => handleProfileClick(profile)}
+            />
+          ))}
+
           </div>
         </section>
         <section className="messages-container">

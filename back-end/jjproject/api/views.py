@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.db.models import Q
 from .models import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -123,3 +124,18 @@ def like_user(request, user_id, target_id):
         new_match.save()
 
     return JsonResponse({"message": f"User {user_id} liked User {target_id}"})
+
+
+@api_view(['GET'])
+def getMatches(request, userEmail):
+    user = User.objects.get(email=userEmail)
+    matches = Match.objects.filter(Q(user1=user) | Q(user2=user))
+    matched_users = []
+    for match in matches:
+        if match.user1.email == userEmail:
+            matched_users.append(match.user2)
+        else:
+            matched_users.append(match.user1)
+
+    serializer = UserSerializer(matched_users, many=True)
+    return Response(serializer.data)

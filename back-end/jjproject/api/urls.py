@@ -14,4 +14,5 @@ urlpatterns = [
     path('getUnseenUsers/<int:userId>/', views.getUnseenUsers, name='getUnseenUsers'),
     path('passUser/<int:user_id>/<int:target_id>', views.pass_user, name='pass_user'),
     path('likeUser/<int:user_id>/<int:target_id>', views.like_user, name='like_user'),
+    path('getMatches/<str:userEmail>/', views.getMatches, name='getMatches'),
 ]

@@ -7,28 +7,32 @@ import museumMagnetImage from "../assets/museum-magnet.png"
 
 
 export default function TravelCardSmall({ profileData }) {
-    const renderInterestImages = () => {
-      return profileData.interests.map((interest, index) => {
-        switch (interest) {
-          case 'beach bum':
-            return <img key={index} src={beachBumImage} alt="Beach Bum" width="15" height="15" />;
-          case 'foodie':
-            return <img key={index} src={foodieImage} alt="Foodie" width="15" height="15" />;
-          case 'adventurer':
-            return <img key={index} src={adventurerImage} alt="Adventurer" width="15" height="15" />;
-          case 'museum magnet':
-            return <img key={index} src={museumMagnetImage} alt="Museum Magnet" width="15" height="15" />;
-          default:
-            return null;
-        }
-      });
-    };
+
+  const renderInterestImages = () => {
+    if (!profileData) {
+      return null;
+    }
+    const images = [];
+    if (profileData.interest_beach_bum) {
+      images.push(<img key="beachBum" src={beachBumImage} alt="Beach Bum" width="20" height="20" />);
+    }
+    if (profileData.interest_foodie) {
+      images.push(<img key="foodie" src={foodieImage} alt="Foodie" width="20" height="20" />);
+    }
+    if (profileData.interest_adventurer) {
+      images.push(<img key="adventurer" src={adventurerImage} alt="Adventurer" width="20" height="20" />);
+    }
+    if (profileData.interest_museum_magnet) {
+      images.push(<img key="museumMagnet" src={museumMagnetImage} alt="Museum Magnet" width="20" height="20" />);
+    }
+    return images;
+  };
   
     return (
       <div className="travel-card-small-container">
         <div className="travel-card-small-left">
           <div className="travel-card-small-profile-picture">
-            <img src={profileData.profilePicture || defaultProfileImage} alt="Profile" />
+            <img src={profileData.profile_picture || defaultProfileImage} alt="Profile" />
           </div>
           <div className="travel-card-small-data-left">
             <p id="travel-card-small-name">{profileData.first_name}, {profileData.age}</p>
