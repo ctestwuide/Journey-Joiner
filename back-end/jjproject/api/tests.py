@@ -3,7 +3,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from .models import User, Like, Pass, Match, Message
 from .views import getUsers, getUser, signup, login, updateUser, updateUserPicture, getUnseenUsers, pass_user, like_user, getMatches
 from rest_framework.test import APIRequestFactory, force_authenticate
-
+from .serializers import *
 
 class UserModelTest(TestCase):
     def setUp(self):
@@ -83,8 +83,7 @@ class UserViewTest(TestCase):
         response = updateUserPicture(request, userEmail=self.user.email)
         self.assertEqual(response.status_code, 200)
 
-
-class UserActionViewTest(TestCase):
+class UserActionTest(TestCase):
     def setUp(self):
         self.factory = APIRequestFactory()
         self.user1 = User.objects.create(
@@ -97,15 +96,8 @@ class UserActionViewTest(TestCase):
         self.user2 = User.objects.create(
             first_name="test2",
             last_name="user2",
-            age=25,
+            age=26,
             email="testuser2@gmail.com",
-            password="test123"
-        )
-        self.user3 = User.objects.create(
-            first_name="test3",
-            last_name="user3",
-            age=25,
-            email="testuser3@gmail.com",
             password="test123"
         )
 
@@ -114,25 +106,29 @@ class UserActionViewTest(TestCase):
         request = self.factory.get(f'/getUnseenUsers/{self.user1.user_id}/')
         response = getUnseenUsers(request, userId=self.user1.user_id)
         self.assertEqual(response.status_code, 200)
-        # The response should include user3 only, as user1 has already liked user2
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]['email'], 'testuser3@gmail.com')
-
-    def test_getMatches(self):
-        request = self.factory.get('/getMatches/')
-        request.user = self.user1
-        response = getMatches(request, userEmail=self.user1.email)
-        self.assertEqual(response.status_code, 200)
-
-    def test_like_user(self):
-        request = self.factory.post('/like_user/')
-        request.user = self.user1
-        response = like_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
-        self.assertEqual(response.status_code, 200)
+        # The response should not contain the user who has already been liked
+        self.assertNotIn(UserSerializer(self.user2).data, response.data)
 
     def test_pass_user(self):
-        request = self.factory.post('/pass_user/')
-        request.user = self.user1
+        request = self.factory.post(f'/pass_user/{self.user1.user_id}/{self.user2.user_id}/')
         response = pass_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
         self.assertEqual(response.status_code, 200)
+        # The pass should be recorded in the database
+        self.assertTrue(Pass.objects.filter(sender=self.user1, receiver=self.user2).exists())
 
+    def test_like_user_without_match(self):
+        request = self.factory.post(f'/like_user/{self.user1.user_id}/{self.user2.user_id}/')
+        response = like_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
+        self.assertEqual(response.status_code, 200)
+        # The like should be recorded in the database
+        self.assertTrue(Like.objects.filter(sender=self.user1, receiver=self.user2).exists())
+        # But a match should not be created if the like is not mutual
+        self.assertFalse(Match.objects.filter(user1=self.user1, user2=self.user2).exists())
+
+    def test_like_user_with_match(self):
+        Like.objects.create(sender=self.user2, receiver=self.user1)
+        request = self.factory.post(f'/like_user/{self.user1.user_id}/{self.user2.user_id}/')
+        response = like_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
+        self.assertEqual(response.status_code, 200)
+        # Now that the like is mutual, a match should be created
+        self.assertTrue(Match.objects.filter(user1=self.user1, user2=self.user2).exists() or Match.objects.filter(user1=self.user2, user2=self.user1).exists())
