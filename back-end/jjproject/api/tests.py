@@ -82,3 +82,57 @@ class UserViewTest(TestCase):
         request = self.factory.put(f'/updateUserPicture/{self.user.email}/', {'profile_picture': image})
         response = updateUserPicture(request, userEmail=self.user.email)
         self.assertEqual(response.status_code, 200)
+
+
+class UserActionViewTest(TestCase):
+    def setUp(self):
+        self.factory = APIRequestFactory()
+        self.user1 = User.objects.create(
+            first_name="test1",
+            last_name="user1",
+            age=25,
+            email="testuser1@gmail.com",
+            password="test123"
+        )
+        self.user2 = User.objects.create(
+            first_name="test2",
+            last_name="user2",
+            age=25,
+            email="testuser2@gmail.com",
+            password="test123"
+        )
+        self.user3 = User.objects.create(
+            first_name="test3",
+            last_name="user3",
+            age=25,
+            email="testuser3@gmail.com",
+            password="test123"
+        )
+
+    def test_getUnseenUsers(self):
+        Like.objects.create(sender=self.user1, receiver=self.user2)
+        request = self.factory.get(f'/getUnseenUsers/{self.user1.user_id}/')
+        response = getUnseenUsers(request, userId=self.user1.user_id)
+        self.assertEqual(response.status_code, 200)
+        # The response should include user3 only, as user1 has already liked user2
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]['email'], 'testuser3@gmail.com')
+
+    def test_getMatches(self):
+        request = self.factory.get('/getMatches/')
+        request.user = self.user1
+        response = getMatches(request, userEmail=self.user1.email)
+        self.assertEqual(response.status_code, 200)
+
+    def test_like_user(self):
+        request = self.factory.post('/like_user/')
+        request.user = self.user1
+        response = like_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
+        self.assertEqual(response.status_code, 200)
+
+    def test_pass_user(self):
+        request = self.factory.post('/pass_user/')
+        request.user = self.user1
+        response = pass_user(request, user_id=self.user1.user_id, target_id=self.user2.user_id)
+        self.assertEqual(response.status_code, 200)
+
