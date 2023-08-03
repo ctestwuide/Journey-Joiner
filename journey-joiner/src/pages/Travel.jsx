@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import Header from '../components/Header';
-import Dashboard from '../components/Dashboard'
+import Dashboard from '../components/Dashboard';
+import { API_KEY } from '../config.js';
 
 export default function Travel() {
     const { email } = useParams();
@@ -28,7 +29,7 @@ export default function Travel() {
       const options = {
           method: 'GET',
           headers: {
-              'X-RapidAPI-Key': '4bd7c2a1fdmsh881fc8f930b2362p1d584djsn77e47d77c6c1',
+              'X-RapidAPI-Key': API_KEY,
               'X-RapidAPI-Host': 'ai-trip-planner.p.rapidapi.com'
           }
       };
