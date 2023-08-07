@@ -29,7 +29,7 @@ export default function Travel() {
       const options = {
           method: 'GET',
           headers: {
-              'X-RapidAPI-Key': API_KEY,
+              'X-RapidAPI-Key': API_KEY, //using hidden API key
               'X-RapidAPI-Host': 'ai-trip-planner.p.rapidapi.com'
           }
       };
